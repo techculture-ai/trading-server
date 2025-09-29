@@ -1,0 +1,25 @@
+name: Deploy Server to Droplet
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect & deploy on droplet
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_SSH_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            set -e
+            cd /var/www/server
+            git fetch --all
+            git reset --hard origin/master
+            pnpm install --frozen-lockfile
+            pm2 restart server || pm2 start npm --name server -- run dev
+            pm2 save
