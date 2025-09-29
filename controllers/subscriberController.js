@@ -23,7 +23,7 @@ export const createSubscriber = async (req, res) => {
         // Send confirmation email
         sendEmail({
             sendTo: email,
-            subject: "Thank You for Subscribing to TechCulture App",
+            subject: "Thank You for Subscribing to Info Tech India",
             text: "",
             html: subscriptionConfirmationEmailTemp( email),
         });

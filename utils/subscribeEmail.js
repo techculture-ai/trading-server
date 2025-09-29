@@ -5,7 +5,7 @@ const subscriptionConfirmationEmailTemp = ( email) => {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Welcome to TechCulture!</title>
+            <title>Welcome to Info Tech India!</title>
             <style>
                 body {
                     font-family: 'Arial', sans-serif;
@@ -158,7 +158,7 @@ const subscriptionConfirmationEmailTemp = ( email) => {
         <body>
             <div class="email-container">
                 <div class="header">
-                    <h1>🚀 Welcome to TechCulture!</h1>
+                    <h1>🚀 Welcome to Info Tech India!</h1>
                     <p>Your subscription is confirmed</p>
                 </div>
                 
@@ -168,7 +168,7 @@ const subscriptionConfirmationEmailTemp = ( email) => {
                     </div>
                     
                     <p class="description">
-                        Thank you for subscribing to TechCulture! We're thrilled to have you join our community of tech enthusiasts, innovators, and forward-thinkers.
+                        Thank you for subscribing to Info Tech India! We're thrilled to have you join our community of tech enthusiasts, innovators, and forward-thinkers.
                     </p>
                     
                     <div class="subscription-details">
@@ -189,7 +189,7 @@ const subscriptionConfirmationEmailTemp = ( email) => {
                         </ul>
                     </div>
                     
-                    <a href="https://techculture.ai" class="cta-button">Explore TechCulture</a>
+                    <a href="https://infotechindia.in" class="cta-button">Explore Info Tech India</a>
                     
                     <p style="margin-top: 30px; color: #666;">
                         We typically send 2-3 emails per week, and we promise to keep them valuable and engaging. No spam, ever!
@@ -197,7 +197,7 @@ const subscriptionConfirmationEmailTemp = ( email) => {
                 </div>
                 
                 <div class="footer">
-                    <p><strong>TechCulture Team</strong></p>
+                    <p><strong>Info Tech India Team</strong></p>
                     <p>Connecting you with the future of technology</p>
                     
                     <div class="social-links">
@@ -206,10 +206,10 @@ const subscriptionConfirmationEmailTemp = ( email) => {
                         <a href="#">Medium</a>
                     </div>
                     
-                    <p>&copy; 2024 TechCulture. All rights reserved.</p>
+                    <p>&copy; 2024 Info Tech India. All rights reserved.</p>
                     
                     <div class="unsubscribe">
-                        <p>You're receiving this email because you subscribed to TechCulture.</p>
+                        <p>You're receiving this email because you subscribed to Info Tech India.</p>
                         <p><a href="#">Unsubscribe</a> | <a href="#">Manage Preferences</a></p>
                     </div>
                 </div>

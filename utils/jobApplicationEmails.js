@@ -71,7 +71,7 @@ const ApplicationSubmittedUserEmail = (
               <p>We appreciate your interest and will get back to you soon!</p>
           </div>
           <div class="footer">
-              <p>&copy; 2025 TechCulture. All rights reserved.</p>
+              <p>&copy; 2025 Info Tech India. All rights reserved.</p>
           </div>
       </div>
   </body>
@@ -157,7 +157,7 @@ const ApplicationSubmittedAdminEmail = (
               <p>Please review the application in your admin dashboard and take appropriate action.</p>
           </div>
           <div class="footer">
-              <p>&copy; 2025 TechCulture. All rights reserved.</p>
+              <p>&copy; 2025 Info Tech India. All rights reserved.</p>
           </div>
       </div>
   </body>
@@ -270,7 +270,7 @@ const ApplicationStatusChangeUserEmail = (
               <p>Thank you for your patience. If you have any questions, please contact our support team.</p>
           </div>
           <div class="footer">
-              <p>&copy; 2025 TechCulture. All rights reserved.</p>
+              <p>&copy; 2025 Info Tech India. All rights reserved.</p>
           </div>
       </div>
   </body>
@@ -382,7 +382,7 @@ const ApplicationStatusChangeAdminEmail = (
               <p>The applicant has been automatically notified of this status change.</p>
           </div>
           <div class="footer">
-              <p>&copy; 2025 TechCulture. All rights reserved.</p>
+              <p>&copy; 2025 Info Tech India. All rights reserved.</p>
           </div>
       </div>
   </body>

@@ -57,13 +57,13 @@ const VerificationEmail = (name, otp) => {
               <h1>Hii ${name} Please Verify Your Email Address</h1>
           </div>
           <div class="content">
-  
-              <p>Thank you for registering with TechCulture. Please use the OTP below to verify your email address:</p>
+
+              <p>Thank you for registering with Info Tech India. Please use the OTP below to verify your email address:</p>
               <div class="otp">${otp}</div>
               <p>If you didn’t create an account, you can safely ignore this email.</p>
           </div>
           <div class="footer">
-              <p>&copy; 2025 TechCulture. All rights reserved.</p>
+              <p>&copy; 2025 Info Tech India. All rights reserved.</p>
           </div>
       </div>
   </body>

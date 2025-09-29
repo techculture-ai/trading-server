@@ -35,7 +35,7 @@ export const registerUser = async (req, res) => {
 
         const sent = await sendEmail({
             sendTo: email,
-            subject: "Verify email from TechCulture App",
+            subject: "Verify email from Info Tech India",
             text: "",
             html: VerificationEmail(newUser.name, verifyCode),
         });
@@ -97,7 +97,7 @@ export const adminloginUser = async (req, res) => {
             await user.save();
             await sendEmail({
                 sendTo: email,
-                subject: "Verify email from TechCulture App",
+                subject: "Verify email from Info Tech India",
                 text: "",
                 html: VerificationEmail(user.name, verifyCode),
             });
@@ -189,7 +189,7 @@ export const forgotPassword = async (req, res) => {
         await user.save();
         await sendEmail({
             sendTo: email,
-            subject: "Reset Password from TechCulture App",
+            subject: "Reset Password from Info Tech India",
             text: "",
             html: forgotPasswordEmail(user.name, verifyCode),
         });

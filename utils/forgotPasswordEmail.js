@@ -46,11 +46,11 @@ const forgotPasswordEmailTemp = (name, otp)=>{
         <body>
             <div class="container">
                 <h1>Hi ${name} Please Verify Your Email Address To reset Password</h1>
-                <p>Thank you for registering with TechCulture. Please use the OTP below to verify your email address:</p>
+                <p>Thank you for registering with Info Tech India. Please use the OTP below to verify your email address:</p>
                 <div class="otp">${otp}</div>
                 <p>If you didn’t forget your password, you can safely ignore this email.</p>
                 <div class="footer">
-                    <p>&copy; 2025 TechCulture. All rights reserved.</p>
+                    <p>&copy; 2025 Info Tech India. All rights reserved.</p>
                 </div>
             </div>
         </body>

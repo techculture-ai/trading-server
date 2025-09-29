@@ -96,7 +96,7 @@ export const createEnquiryController = async (req, res) => {
 
         await sendEmail({
           sendTo: email,
-          subject: "Demo Scheduled Successfully - TechCulture AI",
+          subject: "Demo Scheduled Successfully - Info Tech India",
           text: "",
           html: emailHtml,
         });

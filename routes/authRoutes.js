@@ -54,7 +54,7 @@ router.get('/google/test', async (req, res) => {
   try {
     // Test by creating a simple event
     const testEvent = {
-      summary: 'Test Event - TechCulture AI',
+      summary: 'Test Event - Info Tech India',
       description: 'This is a test event to verify Google Calendar integration',
       startDateTime: new Date(Date.now() + 60 * 60 * 1000).toISOString(), // 1 hour from now
       endDateTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(), // 2 hours from now

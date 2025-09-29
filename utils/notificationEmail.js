@@ -2,7 +2,7 @@ const adminNotificationEmailTemp = (
   userName,
   subject,
   bodyText,
-  adminName = "TechCulture Team"
+  adminName = "Info Tech India Team"
 ) => {
   // Function to format and structure raw text
   const formatBodyText = (rawText) => {
@@ -82,7 +82,7 @@ const adminNotificationEmailTemp = (
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>${subject || "Notification from TechCulture"}</title>
+            <title>${subject || "Notification from Info Tech India"}</title>
             <style>
                 body {
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -298,16 +298,16 @@ const adminNotificationEmailTemp = (
                 
                 <div class="footer">
                     <div class="footer-content">
-                        <p><strong>TechCulture</strong></p>
+                        <p><strong>Info Tech India</strong></p>
                         <p>Stay connected with the latest in technology</p>
                         
                         <div class="footer-links">
-                            <a href="https://techculture.ai/">Website</a> |
-                            <a href="https://techculture.ai/contact">Contact Us</a>
+                            <a href="https://infotechindia.in/">Website</a> |
+                            <a href="https://infotechindia.in/contact">Contact Us</a>
                         </div>
                         
                         <div class="timestamp">
-                            <p>&copy; ${new Date().getFullYear()} TechCulture. All rights reserved.</p>
+                            <p>&copy; ${new Date().getFullYear()} Info Tech India. All rights reserved.</p>
                             <p>This is an automated notification email.</p>
                         </div>
                     </div>

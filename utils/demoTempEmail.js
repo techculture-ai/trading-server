@@ -11,8 +11,8 @@ const demoScheduleConfirmationEmailTemp = (userDetails) => {
     meetingLink,
     meetingId,
     demoNotes,
-    hostName = "TechCulture Team",
-    hostEmail = "marketing.techculture@gmail.com",
+    hostName = "Info Tech India Team",
+    hostEmail = "info@infotechindia.in",
   } = userDetails;
 
   // Format date for better readability
@@ -401,7 +401,7 @@ const demoScheduleConfirmationEmailTemp = (userDetails) => {
 
                     <p style="color: #4a5568; font-size: 16px; margin-bottom: 25px;">
                       We’re delighted to let you know that your demo has been successfully scheduled.  
-                      Thank you for giving TechCulture the opportunity to demonstrate how we can support 
+                      Thank you for giving Info Tech India the opportunity to demonstrate how we can support 
                       "your business.  
                       Here are the details:
                     </p>
@@ -478,7 +478,7 @@ const demoScheduleConfirmationEmailTemp = (userDetails) => {
                         <a href="${generateCalendarLink()}" class="calendar-btn">
                             📅 Add to Google Calendar
                         </a>
-                        <a href="https://techculture.ai/" class="reschedule-btn">
+                        <a href="https://infotechindia.in/" class="reschedule-btn">
                             ⏰ Reschedule Demo
                         </a>
                     </div>
@@ -509,7 +509,7 @@ const demoScheduleConfirmationEmailTemp = (userDetails) => {
                         <h4>📞 Need to Make Changes?</h4>
                         <div class="contact-details">
                             <p><strong>Email:</strong> ${hostEmail}</p>
-                            <p><strong>Phone:</strong> +91 7428238091</p>
+                            <p><strong>Phone:</strong> +91 8448332868</p>
                             <p style="margin-top: 15px; font-size: 14px;">
                                 If you need to reschedule or have any questions, don't hesitate to reach out!
                             </p>
@@ -518,11 +518,11 @@ const demoScheduleConfirmationEmailTemp = (userDetails) => {
                 </div>
                 
                 <div class="footer">
-                    <h4>TechCulture Demo Team</h4>
+                    <h4> Info Tech India Demo Team</h4>
                     <p style="margin: 10px 0;">We're excited to show you what we can do!</p>
                     
                     <div class="timestamp">
-                        <p>&copy; ${new Date().getFullYear()} TechCulture. All rights reserved.</p>
+                        <p>&copy; ${new Date().getFullYear()} Info Tech India. All rights reserved.</p>
                         <p>Demo confirmation sent on ${new Date().toLocaleDateString(
                           "en-US",
                           {
@@ -555,8 +555,8 @@ const adminDemoNotificationEmailTemp = (userDetails) => {
     meetingLink,
     meetingId,
     demoNotes,
-    hostName = "TechCulture Demo Team",
-    hostEmail = "demo@techculture.com",
+    hostName = "Info Tech India Demo Team",
+    hostEmail = "info@infotechindia.in",
   } = userDetails;
 
   const formatDate = (dateString) => {
@@ -713,8 +713,8 @@ const adminDemoNotificationEmailTemp = (userDetails) => {
         }
       </div>
       <div class="footer">
-        <p>TechCulture Demo Team</p>
-        <p>&copy; ${new Date().getFullYear()} TechCulture</p>
+        <p>Info Tech India Demo Team</p>
+        <p>&copy; ${new Date().getFullYear()} Info Tech India</p>
       </div>
     </div>
   </body>
