@@ -1,6 +1,6 @@
 import express from "express"
 import {adminAuthorize,authenticateUser} from "../middlewares/authMiddleware.js"
-import {addTechnologyItem,createTechnology,deleteTechnology,deleteTechnologyItem,getAllTechnologies,getTechnologyByCategoryKey,getTechnologyById,searchTechnologies,updateTechnology,updateTechnologyItem} from "../controllers/tehnologiesController.js"
+import {addTechnologyItem,createTechnology,deleteTechnology,deleteTechnologyItem,getAllTechnologies,getTechnologyByCategoryKey,getTechnologyById,searchTechnologies,updateTechnology,updateTechnologyItem} from "../controllers/technologiesController.js"
 
 const router = express.Router();
 

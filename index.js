@@ -12,10 +12,7 @@ import testimonialRouter from "./routes/testimonialRoutes.js";
 import contactRouter from "./routes/contactRoutes.js"
 import projectRouter from "./routes/projectRoutes.js"
 import serviceRouter from "./routes/serviceRoutes.js"
-import jobPostRouter from "./routes/jobPostRoutes.js"
-import jobApplicationRouter from "./routes/jobApplication.js"
 import enquiryRouter from "./routes/enquiryRoutes.js"
-import dashboardRouter from "./routes/dashboardRoutes.js"
 import sliderRouter from "./routes/sliderRoutes.js"
 import customerRouter from "./routes/customerRouter.js"
 import technologyRouter from "./routes/technologiesRoutes.js"
@@ -23,26 +20,12 @@ import cleanupRouter from "./routes/cleanupRoutes.js"
 import faqRouter from "./routes/faqRoutes.js"
 import subscriberRouter from "./routes/subscriberRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
+import clientRouter from "./routes/clientRoutes.js"
 
 const app = express()
 const PORT = process.env.PORT || 5000
 app.use(
-  cors({
-    origin: [
-      "https://appcenter.techculture.ai",
-      "https://techculture.ai",
-      "https://infotechindia.in",
-      "https://admin.infotechindia.in",
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://139.59.90.174:3001",
-      "http://139.59.90.174:3000",
-      "http://localhost:3002",
-      "http://localhost:8000",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization", "x-access-token"],
-  })
+  cors("*")
 );
 app.set("trust proxy", true);
 
@@ -58,7 +41,6 @@ app.get("/", (req, res) => {
 })
 
 app.use("/auth", authRoutes);
-app.use("/api", dashboardRouter) 
 app.use("/api/users", userRouter)
 app.use("/api/employees", employeeRouter)
 app.use("/api/site-settings", siteSettingRouter)
@@ -67,8 +49,6 @@ app.use("/api/testimonials", testimonialRouter)
 app.use("/api/contacts", contactRouter)
 app.use("/api/projects", projectRouter)
 app.use("/api/services", serviceRouter)
-app.use("/api/job-posts", jobPostRouter);
-app.use("/api/job-applications", jobApplicationRouter)
 app.use("/api/enquiries", enquiryRouter);
 app.use("/api/sliders", sliderRouter);
 app.use("/api/customers", customerRouter);
@@ -76,6 +56,7 @@ app.use("/api/technologies", technologyRouter);
 app.use("/api/cleanup", cleanupRouter);
 app.use("/api/faqs", faqRouter);
 app.use("/api/subscriber", subscriberRouter);
+app.use("/api/clients", clientRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
