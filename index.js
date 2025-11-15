@@ -21,6 +21,8 @@ import faqRouter from "./routes/faqRoutes.js"
 import subscriberRouter from "./routes/subscriberRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import clientRouter from "./routes/clientRoutes.js"
+import savedFilterRouter from "./routes/savedFilterRoutes.js"
+import auditLogRouter from "./routes/auditLogRoutes.js"
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -57,6 +59,8 @@ app.use("/api/cleanup", cleanupRouter);
 app.use("/api/faqs", faqRouter);
 app.use("/api/subscriber", subscriberRouter);
 app.use("/api/clients", clientRouter);
+app.use("/api/saved-filters", savedFilterRouter);
+app.use("/api/audit-logs", auditLogRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)

@@ -39,7 +39,18 @@ const ClientSchema = new mongoose.Schema({
   },
   state: { type: String, default: "" },
   lastLoginDate: { type: String, default: "" },
-  callingStatus: { type: String, default: "" },
+  
+  // Calling Status Fields
+  callingStatus: { type: String, default: "New" },
+  
+  // Conditional Fields for Calling Status
+  reEycDoneDate: { type: String, default: "" }, // For "Re-EYC done"
+  demoRequiredDate: { type: String, default: "" }, // For "Demo Required Date"
+  fundReceivedAmount: { type: String, default: "" }, // For "Fund Received"
+  fundReceivedDate: { type: String, default: "" }, // For "Fund Received"
+  tradeDoneDate: { type: String, default: "" }, // For "Trade Done"
+  
+  // Follow-up
   nextFollowUpDate: { type: String, default: "" },
   remarks: { type: String, default: "" },
   
@@ -72,5 +83,7 @@ ClientSchema.index({ mobileNo: 1 });
 ClientSchema.index({ city: 1 });
 ClientSchema.index({ uploadedAt: -1 });
 ClientSchema.index({ isRead: 1 });
+ClientSchema.index({ accountStatus: 1 });
+ClientSchema.index({ callingStatus: 1 });
 
 export default mongoose.model("Client", ClientSchema);

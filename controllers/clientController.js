@@ -1,4 +1,5 @@
 import clientModel from "../models/clientModel.js";
+import AuditLog from "../models/auditLogModel.js";
 import csvParser from "csv-parser";
 import fs from "fs";
 import path from "path";
@@ -652,6 +653,182 @@ function buildAdvancedFilterQuery(conditions) {
 function buildFieldQuery(condition) {
   const { field, operator, value } = condition;
 
+
+   if (operator.startsWith("date")) {
+    const now = new Date();
+    
+    switch (operator) {
+      case "dateEquals":
+        const dateValue = new Date(value);
+        const nextDay = new Date(dateValue);
+        nextDay.setDate(nextDay.getDate() + 1);
+        return {
+          [field]: {
+            $gte: dateValue.toISOString().split('T')[0],
+            $lt: nextDay.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateBefore":
+        return { [field]: { $lt: value } };
+
+      case "dateAfter":
+        return { [field]: { $gt: value } };
+
+      case "dateWithin1Week":
+        const oneWeekFromNow = new Date(now);
+        oneWeekFromNow.setDate(oneWeekFromNow.getDate() + 7);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: oneWeekFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin2Weeks":
+        const twoWeeksFromNow = new Date(now);
+        twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: twoWeeksFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin1Month":
+        const oneMonthFromNow = new Date(now);
+        oneMonthFromNow.setMonth(oneMonthFromNow.getMonth() + 1);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: oneMonthFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin2Months":
+        const twoMonthsFromNow = new Date(now);
+        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: twoMonthsFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin3Months":
+        const threeMonthsFromNow = new Date(now);
+        threeMonthsFromNow.setMonth(threeMonthsFromNow.getMonth() + 3);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: threeMonthsFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin6Months":
+        const sixMonthsFromNow = new Date(now);
+        sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: sixMonthsFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateWithin1Year":
+        const oneYearFromNow = new Date(now);
+        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+        return {
+          [field]: {
+            $gte: now.toISOString().split('T')[0],
+            $lte: oneYearFromNow.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast1Week":
+        const oneWeekAgo = new Date(now);
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        return {
+          [field]: {
+            $gte: oneWeekAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast2Weeks":
+        const twoWeeksAgo = new Date(now);
+        twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+        return {
+          [field]: {
+            $gte: twoWeeksAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast1Month":
+        const oneMonthAgo = new Date(now);
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        return {
+          [field]: {
+            $gte: oneMonthAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast2Months":
+        const twoMonthsAgo = new Date(now);
+        twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2);
+        return {
+          [field]: {
+            $gte: twoMonthsAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast3Months":
+        const threeMonthsAgo = new Date(now);
+        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+        return {
+          [field]: {
+            $gte: threeMonthsAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast6Months":
+        const sixMonthsAgo = new Date(now);
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+        return {
+          [field]: {
+            $gte: sixMonthsAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "datePast1Year":
+        const oneYearAgo = new Date(now);
+        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+        return {
+          [field]: {
+            $gte: oneYearAgo.toISOString().split('T')[0],
+            $lte: now.toISOString().split('T')[0]
+          }
+        };
+
+      case "dateCustomRange":
+        const [startDate, endDate] = value.split(',');
+        return {
+          [field]: {
+            $gte: startDate.trim(),
+            $lte: endDate.trim()
+          }
+        };
+
+      default:
+        return {};
+    }
+  }
+
   switch (operator) {
     case "equals":
       return { [field]: { $regex: `^${escapeRegex(value)}$`, $options: "i" } };
@@ -824,11 +1001,63 @@ export const getClientById = async (req, res) => {
   }
 };
 
+// Helper function to get field labels
+const getFieldLabel = (fieldName) => {
+  const fieldLabels = {
+    tradingCode: "Trading Code",
+    owner: "Owner",
+    name: "Name",
+    mobileNo: "Mobile No",
+    emailId: "Email ID",
+    dpClientId: "DP Client ID",
+    branchCode: "Branch Code",
+    rmtlCode: "RMTL Code",
+    investorType: "Investor Type",
+    accountOpenDate: "A/c Open Date",
+    accountStatus: "Account Status",
+    firstTradeDate: "First Trade Date",
+    holdingValue: "Holding Value",
+    ledgerBalance: "Ledger Balance",
+    lastTradeDate: "Last Trade Date",
+    ytdBrok: "YTD Brok.",
+    activeExchange: "Active Exchange",
+    poaDdpi: "POA/DDPI",
+    nominee: "Nominee",
+    annualIncome: "Annual Income",
+    occupation: "Occupation",
+    city: "City",
+    state: "State",
+    lastLoginDate: "Last Login Date",
+    callingStatus: "Calling Status",
+    nextFollowUpDate: "Next Follow up Date",
+    remarks: "Remarks",
+    reEycDoneDate: "Re-EYC Done Date",
+    demoRequiredDate: "Demo Required Date",
+    fundReceivedAmount: "Fund Received Amount",
+    fundReceivedDate: "Fund Received Date",
+    fundNotReceivedReason: "Fund Not Received Reason",
+    callbackDate: "Callback Date",
+    notInterestedReason: "Not Interested Reason",
+    wrongNumberAlternate: "Wrong Number Alternate",
+    dpValue: "DP Value",
+    notMappedReason: "Not Mapped Reason",
+  };
+  return fieldLabels[fieldName] || fieldName;
+};
+
+// Helper function to format value for display
+const formatValue = (value) => {
+  if (value === null || value === undefined || value === "") return "Empty";
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
+};
+
 // Update client
 export const updateClient = async (req, res) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
+    const { editedBy = "Admin", editedByEmail = "", ipAddress = "", userAgent = "" } = req.headers;
 
     const client = await clientModel.findById(id);
 
@@ -850,19 +1079,51 @@ export const updateClient = async (req, res) => {
       }
     }
 
-    // Update fields
+    // Track changes
+    const changes = [];
     Object.keys(updateData).forEach((key) => {
-      if (updateData[key] !== undefined) {
-        client[key] = updateData[key];
+      if (updateData[key] !== undefined && key !== "lastModified") {
+        const oldValue = client[key];
+        const newValue = updateData[key];
+
+        // Only log if value actually changed
+        if (String(oldValue) !== String(newValue)) {
+          changes.push({
+            field: key,
+            fieldLabel: getFieldLabel(key),
+            oldValue: formatValue(oldValue),
+            newValue: formatValue(newValue),
+          });
+        }
+
+        client[key] = newValue;
       }
     });
 
     client.lastModified = Date.now();
     await client.save();
 
+    // Create audit log if there are changes
+    if (changes.length > 0) {
+      await AuditLog.create({
+        clientId: client._id,
+        tradingCode: client.tradingCode,
+        action: "UPDATE",
+        editedBy,
+        editedByEmail,
+        changes,
+        metadata: {
+          ipAddress,
+          userAgent,
+          timestamp: new Date(),
+        },
+      });
+    }
+
     return res.status(200).json({
       message: "Client updated successfully",
       client,
+      changesLogged: changes.length,
     });
   } catch (error) {
     console.error("Update client error:", error);
@@ -1034,6 +1295,378 @@ export const getClientStats = async (req, res) => {
     console.error("Stats error:", error);
     return res.status(500).json({
       message: "Failed to fetch statistics",
+      error: error.message,
+    });
+  }
+};
+
+// Get all client IDs (for bulk operations)
+export const getAllClientIds = async (req, res) => {
+  try {
+    const { search = "", filters = "[]" } = req.query;
+
+    // Parse filter conditions
+    let filterConditions = [];
+    try {
+      filterConditions = JSON.parse(filters);
+    } catch (error) {
+      console.error("Filter parse error:", error);
+    }
+
+    // Build MongoDB query (same logic as getAllClients)
+    const query = {};
+
+    // Add search query if provided
+    if (search && search.trim() !== "") {
+      query.$or = [
+        { tradingCode: new RegExp(search, "i") },
+        { name: new RegExp(search, "i") },
+        { emailId: new RegExp(search, "i") },
+        { mobileNo: new RegExp(search, "i") },
+        { city: new RegExp(search, "i") },
+      ];
+    }
+
+    // Build advanced filter query
+    if (filterConditions.length > 0) {
+      const filterQuery = buildAdvancedFilterQuery(filterConditions);
+      if (query.$or) {
+        query.$and = [{ $or: query.$or }, filterQuery];
+        delete query.$or;
+      } else {
+        Object.assign(query, filterQuery);
+      }
+    }
+
+    // Fetch only _id field for efficiency
+    const clients = await clientModel
+      .find(query)
+      .select("_id")
+      .lean()
+      .exec();
+
+    const ids = clients.map((client) => client._id.toString());
+
+    return res.status(200).json({
+      message: "Client IDs fetched successfully",
+      ids,
+      count: ids.length,
+    });
+  } catch (error) {
+    console.error("Get all client IDs error:", error);
+    return res.status(500).json({
+      message: "Failed to fetch client IDs",
+      error: error.message,
+    });
+  }
+};
+
+
+export const updateCSV = async (req, res) => {
+  let filePath = null;
+  let responseSent = false;
+
+  const sendResponse = (statusCode, data) => {
+    if (!responseSent) {
+      responseSent = true;
+      return res.status(statusCode).json(data);
+    }
+  };
+
+  const cleanupFile = () => {
+    if (filePath && fs.existsSync(filePath)) {
+      try {
+        fs.unlinkSync(filePath);
+      } catch (err) {
+        console.error("Error deleting file:", err);
+      }
+    }
+  };
+
+  const normalizeColumnName = (columnName) => {
+    if (!columnName) return '';
+    let normalized = columnName.replace(/^\uFEFF/, '');
+    normalized = normalized.trim();
+    return normalized;
+  };
+
+  const createNormalizedMapping = () => {
+    const normalized = {};
+    Object.keys(COLUMN_MAPPING).forEach(key => {
+      const normalizedKey = normalizeColumnName(key);
+      normalized[normalizedKey] = COLUMN_MAPPING[key];
+    });
+    return normalized;
+  };
+
+  try {
+    if (!req.file) {
+      return sendResponse(400, { message: "No file uploaded" });
+    }
+
+    filePath = req.file.path;
+    const results = [];
+    let csvHeaders = [];
+    let normalizedHeaders = [];
+    let detectedColumns = [];
+    const normalizedMapping = createNormalizedMapping();
+
+    const stream = fs
+      .createReadStream(filePath)
+      .pipe(csvParser())
+      .on("headers", (headerList) => {
+        if (responseSent) return;
+
+        csvHeaders = headerList.map(h => normalizeColumnName(h));
+        normalizedHeaders = csvHeaders.filter(h => h !== '');
+        
+        console.log("UPDATE CSV - Normalized Headers:", normalizedHeaders);
+
+        const hasTradingCode = normalizedHeaders.some(
+          h => h.toLowerCase() === 'trading code'
+        );
+
+        if (!hasTradingCode) {
+          cleanupFile();
+          stream.destroy();
+          return sendResponse(400, {
+            message: "CSV must contain 'Trading Code' column (required field for updates). Found columns: " + normalizedHeaders.join(", ")
+          });
+        }
+
+        detectedColumns = normalizedHeaders.filter(
+          header => normalizedMapping.hasOwnProperty(header)
+        );
+        
+        console.log("UPDATE CSV - Detected columns:", detectedColumns);
+      })
+      .on("data", (data) => {
+        if (responseSent) return;
+
+        const normalizedData = {};
+        Object.keys(data).forEach(key => {
+          const normalizedKey = normalizeColumnName(key);
+          if (normalizedKey) {
+            normalizedData[normalizedKey] = data[key];
+          }
+        });
+
+        const tradingCodeValue = normalizedData['Trading Code'];
+        
+        if (tradingCodeValue && String(tradingCodeValue).trim()) {
+          results.push(normalizedData);
+        }
+      })
+      .on("end", async () => {
+        if (responseSent) return;
+
+        try {
+          cleanupFile();
+
+          if (results.length === 0) {
+            return sendResponse(400, {
+              message: "CSV file is empty or contains no valid data",
+            });
+          }
+
+          console.log(`UPDATE CSV - Processing ${results.length} records...`);
+
+          // Extract all trading codes
+          const tradingCodes = results
+            .map((row) => row['Trading Code'])
+            .filter((code) => code && String(code).trim() !== "");
+
+          // Find existing clients
+          const existingClients = await clientModel
+            .find({
+              tradingCode: { $in: tradingCodes },
+            })
+            .lean();
+
+          const existingTradingCodesMap = new Map();
+          existingClients.forEach(client => {
+            existingTradingCodesMap.set(client.tradingCode, client);
+          });
+
+          console.log(`UPDATE CSV - Found ${existingClients.length} existing clients`);
+
+          // Separate records into update and insert
+          const recordsToUpdate = [];
+          const recordsToInsert = [];
+          const failedRecords = [];
+
+          results.forEach((row) => {
+            const tradingCode = row['Trading Code'];
+
+            if (!tradingCode || String(tradingCode).trim() === "") {
+              return;
+            }
+
+            if (existingTradingCodesMap.has(tradingCode)) {
+              recordsToUpdate.push(row);
+            } else {
+              recordsToInsert.push(row);
+            }
+          });
+
+          console.log(`UPDATE CSV - To Update: ${recordsToUpdate.length}, To Insert: ${recordsToInsert.length}`);
+
+          // Process updates
+          const updatedClients = [];
+          const BATCH_SIZE = 100;
+
+          for (let i = 0; i < recordsToUpdate.length; i += BATCH_SIZE) {
+            const batch = recordsToUpdate.slice(i, i + BATCH_SIZE);
+
+            for (const row of batch) {
+              try {
+                const tradingCode = row['Trading Code'];
+                
+                // Build update data - ONLY for columns present in CSV
+                const updateData = {};
+                normalizedHeaders.forEach((csvHeader) => {
+                  if (normalizedMapping[csvHeader] && csvHeader !== 'Trading Code') {
+                    const dbField = normalizedMapping[csvHeader];
+                    const value = row[csvHeader];
+                    
+                    // Update field if value is present in CSV (even if empty string)
+                    if (value !== undefined && value !== null) {
+                      updateData[dbField] = String(value).trim();
+                    }
+                  }
+                });
+
+                updateData.lastModified = Date.now();
+
+                const updated = await clientModel.findOneAndUpdate(
+                  { tradingCode: tradingCode },
+                  { $set: updateData },
+                  { new: true }
+                );
+
+                if (updated) {
+                  updatedClients.push(updated);
+                }
+              } catch (error) {
+                console.error("Error updating client:", error);
+                failedRecords.push({
+                  tradingCode: row['Trading Code'],
+                  error: error.message,
+                  action: 'update'
+                });
+              }
+            }
+
+            console.log(`UPDATE CSV - Batch ${Math.floor(i/BATCH_SIZE) + 1}: Updated ${batch.length} records`);
+          }
+
+          // Process inserts (new clients)
+          const insertedClients = [];
+
+          for (let i = 0; i < recordsToInsert.length; i += BATCH_SIZE) {
+            const batch = recordsToInsert.slice(i, i + BATCH_SIZE);
+            const clientsToInsert = [];
+
+            batch.forEach((row) => {
+              try {
+                const clientData = {};
+                
+                normalizedHeaders.forEach((csvHeader) => {
+                  if (normalizedMapping[csvHeader]) {
+                    const dbField = normalizedMapping[csvHeader];
+                    const value = row[csvHeader];
+                    
+                    if (value !== undefined && value !== null && String(value).trim() !== '') {
+                      clientData[dbField] = String(value).trim();
+                    }
+                  }
+                });
+
+                clientsToInsert.push({
+                  ...clientData,
+                  uploadedBy: req.user?._id,
+                  isRead: false,
+                });
+              } catch (error) {
+                console.error("Error preparing client:", error);
+                failedRecords.push({
+                  tradingCode: row['Trading Code'],
+                  error: error.message,
+                  action: 'insert'
+                });
+              }
+            });
+
+            try {
+              const inserted = await clientModel.insertMany(clientsToInsert, { ordered: false });
+              insertedClients.push(...inserted);
+              console.log(`UPDATE CSV - Batch ${Math.floor(i/BATCH_SIZE) + 1}: Inserted ${inserted.length} new records`);
+            } catch (error) {
+              console.error("Batch insert error:", error);
+            }
+          }
+
+          console.log(`UPDATE CSV - Complete: ${updatedClients.length} updated, ${insertedClients.length} inserted`);
+
+          const response = {
+            message: "CSV update/insert processed successfully",
+            totalRows: results.length,
+            updatedRecords: updatedClients.length,
+            insertedRecords: insertedClients.length,
+            failedRecords: failedRecords.length,
+            detectedColumns: detectedColumns,
+            summary: {
+              columnsInCSV: detectedColumns.length,
+              totalExpectedColumns: Object.keys(normalizedMapping).length,
+              onlySpecifiedColumnsUpdated: true
+            },
+            updatedClients: updatedClients.slice(0, 5), // Sample
+            insertedClients: insertedClients.slice(0, 5), // Sample
+          };
+
+          if (failedRecords.length > 0) {
+            response.failedRecordsDetails = failedRecords.slice(0, 10);
+            response.failedMessage = `${failedRecords.length} record(s) failed to process`;
+          }
+
+          return sendResponse(200, response);
+        } catch (error) {
+          console.error("UPDATE CSV - Processing error:", error);
+          cleanupFile();
+          return sendResponse(500, {
+            message: error.message || "Failed to process CSV update",
+          });
+        }
+      })
+      .on("error", (error) => {
+        if (responseSent) return;
+
+        console.error("UPDATE CSV - Parsing error:", error);
+        cleanupFile();
+        return sendResponse(500, {
+          message: "Error parsing CSV file. Please check file format.",
+          error: error.message,
+        });
+      });
+
+    const timeout = setTimeout(() => {
+      if (!responseSent) {
+        console.error("UPDATE CSV - Request timeout");
+        sendResponse(408, {
+          message: "Request timeout. Please try again.",
+        });
+      }
+    }, 300000); // 5 minutes
+
+    res.on("finish", () => {
+      clearTimeout(timeout);
+    });
+
+  } catch (error) {
+    console.error("UPDATE CSV - Upload error:", error);
+    cleanupFile();
+    return sendResponse(500, {
+      message: "Upload failed",
       error: error.message,
     });
   }

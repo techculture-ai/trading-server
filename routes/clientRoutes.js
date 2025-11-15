@@ -15,6 +15,8 @@ import {
   getClientStats,
   toggleReadStatus,
   downloadDuplicateFile,
+  updateCSV,
+  getAllClientIds,
 } from "../controllers/clientController.js";
 
 const upload = multer({ dest: "uploads/" });
@@ -22,11 +24,16 @@ const upload = multer({ dest: "uploads/" });
 // Upload CSV
 router.post("/upload", upload.single("file"), uploadCSV);
 
+router.post("/update-csv", upload.single("file"), updateCSV); 
+
 // Get all clients with pagination and search
 router.get("/", getAllClients);
 
 // Get statistics
 router.get("/stats", getClientStats);
+
+// Get all client IDs (for bulk select all)
+router.get("/ids/all", getAllClientIds);
 
 // Export to CSV
 router.get("/export", exportClientsToCSV);
